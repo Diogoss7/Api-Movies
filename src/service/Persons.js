@@ -1,7 +1,7 @@
-const getTopRatedMovies = async () => {
+const getPersons = async () => {
     try {
 
-      const moviesURL = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+      const SeriesURL = import.meta.env.VITE_PERSONS;
       const apiToken = import.meta.env.VITE_API_TOKEN;
       const options = {
         method: "GET",
@@ -11,7 +11,7 @@ const getTopRatedMovies = async () => {
         },
       };
   
-      const response = await fetch(moviesURL, options);
+      const response = await fetch(SeriesURL, options);
       const data = await response.json();
       return data; 
       
@@ -22,4 +22,4 @@ const getTopRatedMovies = async () => {
     }
   };
   
-  export default getTopRatedMovies;
+  export default getPersons;

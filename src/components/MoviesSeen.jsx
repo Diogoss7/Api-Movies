@@ -30,7 +30,6 @@ const MoviesSeen = () => {
               <FaStar className="star-icon" />
               {movie.vote_average}
             </div>
-            <div className="card-title">{movie.title}</div>
           </div>
         </div>
       ))}

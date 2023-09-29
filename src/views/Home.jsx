@@ -1,28 +1,45 @@
 import React, { useState, useEffect } from "react";
 import getTopRatedMovies from "../service/Movie";
+import TopRated from "../components/TopRated";
 import MovieCard from "../components/MovieCard";
-import YouTubeVideo from "../components/YoutubeVideo";
-import "./styleHome.css";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import MoviesSeen from "../components/MoviesSeen";
+import getTopRated from "../service/TopRated";
+import getPersons from "../service/Persons";
+import Persons from "../components/Persons";
+import Trailer from "../components/Trailer";
+import "./styleHome.css";
 
 const Home = () => {
-  
-  const [response, setResponse] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [responseMovies, setResponseMovies] = useState([]);
+  const [responseTopRated, setResponseTopRated] = useState([]);
+  const [responsePersons, setResponsePersons] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [showMovies, setShowMovies] = useState([]);
 
   useEffect(() => {
-
     async function fetchData() {
-
       try {
-      
-        const response = await getTopRatedMovies();
-        setResponse(response);
-        setLoading(false);
+        const responseMovies = await getTopRatedMovies();
 
-        const moviesSeen = JSON.parse(localStorage.getItem('moviesSeen')) || [];
+        const filteredMovies = responseMovies.results.filter((movie) => movie.poster_path);
+        setResponseMovies({ results: filteredMovies });
+
+        const moviesSeen = JSON.parse(localStorage.getItem("moviesSeen")) || [];
         setShowMovies(moviesSeen);
+
+        const responseTopRated = await getTopRated();
+
+        const filteredTopRated = responseTopRated.results.filter((topRated) => topRated.poster_path);
+        setResponseTopRated({ results: filteredTopRated });
+
+        const responsePersons = await getPersons();
+
+        const filteredPersons = responsePersons.results.filter((person) => person.profile_path
+        );
+        setResponsePersons({ results: filteredPersons });
+        setLoading(true);
 
       } catch (error) {
         console.error(error);
@@ -41,40 +58,33 @@ const Home = () => {
           <MoviesSeen />
         </div>
       )}
-      <div className="container-youtube">
-      <div className="text-top"><h1>Conheça os filmes que marcaram época!</h1></div>
-        <div className="title"><h1>O Rei Leão</h1></div>
-        <YouTubeVideo videoId="J57HnR6FPW0" />
-        <div className="text">
-          Live action do clássico da Disney, em O Rei Leão, Simba (Donald Glover) é um jovem leão cujo
-          destino é se tornar o rei da selva. Entretanto, uma armadilha elaborada por seu tio Scar (
-          Chiwetel Ejiofor) faz com que Mufasa (James Earl Jones), o atual rei, morra ao tentar
-          salvar o filhote. Consumido pela culpa, Simba deixa o reino rumo a um local distante,
-          onde encontra amigos que o ensinam a mais uma vez ter prazer pela vida.
-        </div>
-      </div>
       {loading ? (
-        <div>Carregando...</div>
-      ) : (
         <div>
           <div className="container-max">
-           <div className="container-movie">
-            <MovieCard movies={response.results} />
-             </div>
-              <div className="container-youtube">
-              <div className="title"><h1>Besouro Azul</h1></div>
-              <YouTubeVideo videoId="IZw2slPIoGs" />
-              <div className="text">
-                Besouro Azul segue o jovem mexicano Jaime Reyes (Xolo Maridueña) que, recém-formado,
-                volta para casa cheio de aspirações para o futuro. Enquanto ele busca seu propósito
-                no mundo, o destino o surpreende ao colocar em seu caminho uma antiga relíquia de
-                biotecnologia alienígena: o Escaravelho. O besouro alienígena azul escolhe Jaime
-                para ser seu hospedeiro simbiótico, o que lhe dá uma armadura
-                superpoderosa e lhe garante poderes. O jovem então enfrentará desafios imprevisíveis,
-                mudando para sempre seus planos ao se tornar o Super-Herói Besouro Azul.
-              </div>
+            <div className="title"> Sucessos do Cinema </div>
+            <div className="container-movie">
+              <MovieCard movies={responseMovies.results} />
+            </div>
+            <div className="title"> Melhores Avaliados </div>
+            <div className="container-movie">
+              <TopRated topRateds={responseTopRated.results} />
+            </div>
+            <div className="title"> Conheça os rostos mais famosos de Hollywood </div>
+            <div className="container-movie">
+              <Persons persons={responsePersons.results} />
+            </div>
+            <div className="title"> Ultimos Lançamentos</div>
+            <div className="container-Trailer">
+              <Trailer videoId={"avz06PDqDbM"} />
+              <Trailer videoId={"Rt0kp4VW1cI"}/>
             </div>
           </div>
+        </div>
+      ) : (
+        <div>
+          <Box sx={{ width: "100%" }}>
+            <LinearProgress />
+          </Box>
         </div>
       )}
     </div>

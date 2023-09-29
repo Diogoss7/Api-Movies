@@ -2,20 +2,21 @@
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
-    padding: 20px;
-    justify-content: center;
-    background: #1e1e1e;
+    padding: 60px;
+    justify-content: flex-start;
+    background: rgb(60 0 72);
+    
   }
-  
+
   .movies-seen-card .card {
     display: flex;
     flex-direction: column;
     position: relative;
-    background: #1e1e1e;
+    background: rgb(60 0 72);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    width: 200px;
+    width: 150px;
     max-height: 400px;
     transition: transform 0.3s, box-shadow 0.3s;
   }
@@ -28,13 +29,9 @@
   
   .movies-seen-card .card-image {
     width: 100%;
-    height: auto;
+    height: 100%;
     max-height: 300px;
     object-fit: cover;
-  }
-  
-  .movies-seen-card .card-content {
-    padding: 20px;
   }
   
   .movies-seen-card .card-title {
@@ -85,4 +82,9 @@
     background-color: #0056b3;
     color: #fff;
   }
-  
+  @media (max-width: 768px) {
+    .movies-seen-card {
+      display: flex;
+      justify-content: center;
+    }
+  }

@@ -1,19 +1,18 @@
-export const addMovieToLocalStorage = (movieId) => {
-    const watchedMovies = getWatchedMoviesFromLocalStorage();
-    if (!watchedMovies.includes(movieId)) {
-      watchedMovies.push(movieId);
-      localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
-    }
-  };
-  
-  export const removeMovieFromLocalStorage = (movieId) => {
-    const watchedMovies = getWatchedMoviesFromLocalStorage();
-    const updatedMovies = watchedMovies.filter((id) => id !== movieId);
-    localStorage.setItem('watchedMovies', JSON.stringify(updatedMovies));
-  };
-  
-  export const getWatchedMoviesFromLocalStorage = () => {
-    const watchedMovies = localStorage.getItem('watchedMovies');
-    return watchedMovies ? JSON.parse(watchedMovies) : [];
-  };
-  
+export const addMediaToLocalStorage = (mediaId, mediaType) => {
+  const watchedMedia = getWatchedMediaFromLocalStorage(mediaType);
+  if (!watchedMedia.includes(mediaId)) {
+    watchedMedia.push(mediaId);
+    localStorage.setItem(`watched${mediaType}`, JSON.stringify(watchedMedia));
+  }
+};
+
+export const removeMediaFromLocalStorage = (mediaId, mediaType) => {
+  const watchedMedia = getWatchedMediaFromLocalStorage(mediaType);
+  const updatedMedia = watchedMedia.filter((id) => id !== mediaId);
+  localStorage.setItem(`watched${mediaType}`, JSON.stringify(updatedMedia));
+};
+
+export const getWatchedMediaFromLocalStorage = (mediaType) => {
+  const watchedMedia = localStorage.getItem(`watched${mediaType}`);
+  return watchedMedia ? JSON.parse(watchedMedia) : [];
+};

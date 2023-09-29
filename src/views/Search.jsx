@@ -30,7 +30,10 @@ const Search = () => {
 
       const data = await response.json();
       console.log(response);
-      setMovies(data.results.slice(0, 25));
+
+      const filteredMovies = data.results.filter((movie) => movie.poster_path);
+
+      setMovies(filteredMovies.slice(0, 25));
     } catch (error) {
       console.error(error);
     }
