@@ -1,8 +1,14 @@
-# React + Vite
+# Api Movies
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido utilizando Vite para consumo da API TMDB MOVIES. Ele traz uma lista de filmes, atores e detalhes sobre os mesmos.
 
-Currently, two official plugins are available:
+```bash
+git clone https://github.com/Diogoss7/Api-Movies.git
+cd Api-Movies
+npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+Para iniciar o projeto, utilize o seguinte comando:
+```bash
+npm run dev
