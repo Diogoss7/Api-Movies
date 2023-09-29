@@ -10,5 +10,4 @@ npm install
 
 
 Para iniciar o projeto, utilize o seguinte comando:
-```bash
 npm run dev
