@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import Trailer from '../components/Trailer';
@@ -60,28 +60,28 @@ const MoviesDetails = () => {
     setTrailerMovie(OfficialTrailer.key);
   };
 
-  const getMovie = async () => {
-    try {
-      const movieUrl = `${moviesURL}${id}?${apiKey}`;
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${apiToken}`,
-        },
-      };
-
-      const response = await fetch(movieUrl, options);
-      const data = await response.json();
-      setMovie(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    getMovie();
-  }, []);
+      const getMovie = async () => {
+        try {
+          const movieUrl = `${moviesURL}${id}?${apiKey}`;
+          const options = {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: `Bearer ${apiToken}`,
+            },
+          };
+  
+          const response = await fetch(movieUrl, options);
+          const data = await response.json();
+          setMovie(data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      getMovie();
+    }, [id]);
 
   return (
     <div>

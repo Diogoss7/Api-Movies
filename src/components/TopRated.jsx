@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import "./styleMovieCard.css";
+import PropTypes from 'prop-types';
 const imageUrl = import.meta.env.VITE_IMG;
 
 const TopRated = ({ topRateds }) => {
-  console.log(topRateds)
   const addMediaToLocalStorage = (topRated) => {
     const moviesSeen = JSON.parse(localStorage.getItem('moviesSeen')) || [];
     if (!moviesSeen.some((seenMovie) => seenMovie.id === topRated.id)) {
@@ -41,5 +40,14 @@ const TopRated = ({ topRateds }) => {
   );
 };
 
+TopRated.propTypes = {
+  topRateds: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      vote_average: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
 
 export default TopRated;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './PersonDetails.css';
 
@@ -6,7 +6,7 @@ const apiToken = import.meta.env.VITE_API_TOKEN;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imageUrl = import.meta.env.VITE_IMG;
 
-const PersonsDetails = (movie) => {
+const PersonsDetails = () => {
   const { id } = useParams();
   const [person, setPerson] = useState(null);
   const [holdings, setHoldings] = useState(null);
@@ -35,9 +35,6 @@ const PersonsDetails = (movie) => {
 
       const dataHoldings = await responseHoldings.json();
       setHoldings(dataHoldings.crew);
-
-      console.log(dataPerson);
-      console.log(dataHoldings.crew);
     } catch (error) {
       console.error(error);
     }

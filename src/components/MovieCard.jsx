@@ -1,21 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './styleMovieCard.css';
+import { addMediaToLocalStorage } from '../utils/localStorangeUtil'; // Reutilização de lógica
+import PropTypes from 'prop-types';
 
 const imageUrl = import.meta.env.VITE_IMG;
 
 const MovieCard = ({ movies }) => {
-  const addMovieToLocalStorage = (movie) => {
-    const moviesSeen = JSON.parse(localStorage.getItem('moviesSeen')) || [];
-    if (!moviesSeen.some((seenMovie) => seenMovie.id === movie.id)) {
-      moviesSeen.push(movie);
-      localStorage.setItem('moviesSeen', JSON.stringify(moviesSeen));
-    }
-  };
-
   return (
     <div className="movie-card">
       {movies.map((movie, index) => (
@@ -23,11 +16,12 @@ const MovieCard = ({ movies }) => {
           <div key={movie.id} className="card">
             <Link
               to={`/movie/${movie.id}`}
-              onClick={() => addMovieToLocalStorage(movie)}
+              onClick={() => addMediaToLocalStorage(movie.id, 'movies')}
             >
               <img
                 src={`${imageUrl}${movie.poster_path}`}
                 className="card-image"
+                alt={movie.title}
               />
               <div className="card-content">
                 <div className="card-rating">
@@ -41,6 +35,16 @@ const MovieCard = ({ movies }) => {
       ))}
     </div>
   );
+};
+MovieCard.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      vote_average: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default MovieCard;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchMovieCard from "../components/SearchMovieCard";
 
@@ -24,12 +24,11 @@ const Search = () => {
       const response = await fetch(searchWithQueryURL, options);
 
       if (!response.ok) {
-        console.log("Erro na requisição da API");
+        console.error("Erro na requisição da API");
         return;
       }
 
       const data = await response.json();
-      console.log(response);
 
       const filteredMovies = data.results.filter((movie) => movie.poster_path);
 

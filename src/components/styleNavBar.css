@@ -24,6 +24,13 @@
 .nav-search {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 10px; 
+}
+
+form {
+  display: flex; 
+  align-items: center;
 }
 
 input[type="text"] {
@@ -35,6 +42,7 @@ input[type="text"] {
   border-radius: 5px;
   margin-right: 10px;
   width: 200px; 
+  display: inline-block;
 }
 
 input[type="text"]::placeholder {
@@ -49,6 +57,7 @@ button[type="submit"] {
   padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s;
+  display: inline-block;
 }
 
 button[type="submit"]:hover {

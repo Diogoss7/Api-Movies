@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import './styleMovieSeen.css'; 
 import { Link } from 'react-router-dom';
@@ -15,15 +15,15 @@ const MoviesSeen = () => {
   }, []);
 
   return (
-    <div className="movies-seen-card"> 
+    <div className="movies-seen-card">
       {moviesSeen.map((movie) => (
         <div key={movie.id} className="card">
           <Link to={`/movie/${movie.id}`}>
-          <img
-            src={`${imageUrl}${movie.poster_path}`}
-            className="card-image"
-            alt={movie.title}
-          />
+            <img
+              src={`${imageUrl}${movie.poster_path}`}
+              className="card-image"
+              alt={movie.title}
+            />
           </Link>
           <div className="card-content">
             <div className="card-rating">

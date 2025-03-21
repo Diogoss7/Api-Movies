@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const Trailer = ({ videoId }) => {
   const embedUrl = `https://www.youtube.com/embed/${videoId}`;
@@ -34,6 +35,9 @@ const Trailer = ({ videoId }) => {
       ></iframe>
     </div>
   );
+};
+Trailer.propTypes = {
+  videoId: PropTypes.string.isRequired,
 };
 
 export default Trailer;
