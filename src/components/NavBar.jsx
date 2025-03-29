@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillCameraReelsFill } from "react-icons/bs";
 import { BiSearchAlt2 } from "react-icons/bi";
@@ -8,14 +8,11 @@ export default function NavBar() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!search) return;
-    console.log(search);
-
-    navigate(`/search?q=${search}`);
-    setSearch("")
-  };
+  useEffect(() => {
+    if (search) {
+      navigate(`/search?q=${search}`);
+    }
+  }, [search, navigate]);
 
   return (
     <nav className="nav">
@@ -25,14 +22,14 @@ export default function NavBar() {
         </Link>
       </div>
       <div className="nav-search">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             placeholder="Busque um filme"
             onChange={(e) => setSearch(e.target.value)}
             value={search}
           />
-          <button type="submit">
+          <button type="submit" disabled>
             <BiSearchAlt2 className="search-icon" />
           </button>
         </form>
