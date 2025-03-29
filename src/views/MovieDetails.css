@@ -1,4 +1,3 @@
-/* Variáveis para cores */
 :root {
   --primary-color: #f70f0f;
   --secondary-color: rgb(60, 0, 72);
@@ -11,6 +10,12 @@
   --modal-bg: rgba(0, 0, 0, 0.7);
 }
 
+.container-movie-details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
 .conteiner-movie {
   display: flex;
   justify-content: center;
@@ -28,6 +33,7 @@
   max-width: 1200px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding: 60px;
   text-align: center;
@@ -51,6 +57,7 @@
   box-shadow: 0 0 15px var(--highlight-color);
 }
 
+/* Detalhes do filme */
 .datails {
   width: 70%;
   display: flex;
@@ -91,6 +98,27 @@
   text-align: justify;
 }
 
+.card-description-details {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.card-link-details {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+  background-color: var(--highlight-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.card-link-details:hover {
+  background-color: var(--highlight-hover);
+}
+
+/* Trailer */
 .trailer {
   margin: 20px 0;
   text-align: center;
@@ -120,6 +148,7 @@
   margin-right: 5px;
 }
 
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -139,38 +168,18 @@
   cursor: pointer;
 }
 
-.card-description-details {
-  font-size: 1.2rem;
-  margin: 20px 0;
-}
-
-.card-link-details {
-  font-size: 1.5rem;
-  text-decoration: none;
-  color: var(--text-color);
-  background-color: var(--highlight-color);
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-.card-link-details:hover {
-  background-color: var(--highlight-hover);
-}
-
-
+/* Responsividade */
 @media (max-width: 768px) {
   .card-movie-details {
     flex-direction: column;
     padding: 30px;
     text-align: center;
-    align-items: center; 
+    align-items: center;
   }
 
   .container-image-movie {
     width: 100%;
-    display: flex; 
+    display: flex;
     justify-content: center;
   }
 
@@ -182,16 +191,15 @@
   .datails {
     width: 100%;
     align-items: center;
-    text-align: center; 
+    text-align: center;
   }
 
   .trailer {
     width: 80%;
-    display: flex; 
+    display: flex;
     justify-content: center;
   }
 }
-
 
 @media (max-width: 480px) {
   .container-image-movie {
@@ -205,7 +213,7 @@
   .datails {
     width: 100%;
     padding: 10px;
-    align-items: center; 
+    align-items: center;
   }
 
   .card-title-details {
@@ -225,8 +233,8 @@
 
   .trailer {
     width: 100%;
-    display: flex; 
-    justify-content: center; 
-    margin-top: 20px; 
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
 }

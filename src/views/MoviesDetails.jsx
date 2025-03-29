@@ -86,11 +86,12 @@ const MoviesDetails = () => {
   return (
     <div>
         {movie && (
+          <div className='container-movie-details'>
           <div className="card-movie-details">
-            <div className='container-image'>
+            <div className="container-image-movie">
               <img
                 src={`${imageUrl}${movie.poster_path}`}
-                className="card-image"
+                className="card-image-movie"
                 alt={movie.title} 
               />
             </div>
@@ -111,6 +112,7 @@ const MoviesDetails = () => {
                 </button>
               </div>
             </div>
+          </div>
           </div>
         )}
 

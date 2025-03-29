@@ -18,7 +18,7 @@ export default function NavBar() {
     <nav className="nav">
       <div className="nav-logo">
         <Link to="/">
-          <BsFillCameraReelsFill className="logo-icon" /> Movies
+          <BsFillCameraReelsFill className="logo-icon" /> Movies  
         </Link>
       </div>
       <div className="nav-search">

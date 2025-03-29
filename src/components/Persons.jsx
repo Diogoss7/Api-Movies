@@ -1,5 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -7,10 +7,6 @@ import './stylePersonsCard.css'
 const imageUrl = import.meta.env.VITE_IMG;
 
 const Persons = ({ persons }) => {
-
-    console.log(persons)
-
-
 
     return (
         <div className="movie-card-person">
@@ -31,4 +27,13 @@ const Persons = ({ persons }) => {
         </div>
     );
 };
+Persons.propTypes = {
+    persons: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            profile_path: PropTypes.string,
+        })
+    ).isRequired,
+};
+
 export default Persons;
